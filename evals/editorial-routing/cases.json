@@ -1,0 +1,26 @@
+[
+  {
+    "case_id": "voice-exposition",
+    "problem_level": "prose",
+    "symptom": "The dialogue explains motives both characters already know.",
+    "expected_route": "author_revision"
+  },
+  {
+    "case_id": "missing-collision",
+    "problem_level": "chapter",
+    "symptom": "Both participants can achieve their immediate wants without cost.",
+    "expected_route": "chapter_recommission"
+  },
+  {
+    "case_id": "broken-character-route",
+    "problem_level": "story",
+    "symptom": "The chapter depends on a desire contradicted by the accepted character route.",
+    "expected_route": "story_replan"
+  },
+  {
+    "case_id": "no-material-literary-defect",
+    "problem_level": "ready",
+    "symptom": "Cold-read evidence shows sustained immersion and no material literary defect.",
+    "expected_route": "literary_ready"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "case_id": "cold-read-boundary-001",
+  "allowed_inputs": [
+    "draft",
+    "reader-facing promise"
+  ],
+  "required_outputs": [
+    "evidence-anchored reaction",
+    "desire to continue",
+    "confusion without assumed intent"
+  ],
+  "forbidden_outputs": [
+    "prescriptive rewrite",
+    "continuity approval",
+    "future-plan comparison"
+  ]
+}

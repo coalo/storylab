@@ -1,0 +1,6 @@
+interface:
+  display_name: "Storylab 连续性编辑"
+  short_description: "Canon and continuity auditing for accepted prose"
+  default_prompt: "Use $storylab-continuity-editor to audit a literary-ready chapter for continuity."
+policy:
+  allow_implicit_invocation: false

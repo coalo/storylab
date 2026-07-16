@@ -1,0 +1,24 @@
+{
+  "schema_version": "2.0",
+  "project_id": "fixture",
+  "production_mode": "pilot",
+  "taste_freeze": false,
+  "chapters": [
+    {
+      "chapter_id": "001",
+      "status": "literary_ready",
+      "commission_revision": 0,
+      "draft_revision": 0,
+      "evidence": {
+        "commission": null,
+        "writer_view": null,
+        "draft": "故事项目/章节/第001章/正文-修订-0.md",
+        "first_read": "故事项目/章节/第001章/首读记录.md",
+        "editorial_letter": "故事项目/章节/第001章/编辑诊断书.md",
+        "continuity_report": null,
+        "acceptance_record": null
+      },
+      "canon_committed": false
+    }
+  ]
+}

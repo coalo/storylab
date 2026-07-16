@@ -1,0 +1,27 @@
+{
+  "schema_version": "2.0",
+  "discussion_id": "",
+  "title": "",
+  "status": "draft",
+  "revision": 1,
+  "presented_revision": 0,
+  "current_item_id": null,
+  "items": [
+    {
+      "id": "Q01",
+      "order": 1,
+      "topic": "",
+      "why": "",
+      "downstream_effect": "",
+      "question": "",
+      "recommendation": "",
+      "tradeoff": "",
+      "blocking_scope": [],
+      "status": "pending",
+      "user_answer": null,
+      "confirmation_summary": null,
+      "explicit_confirmation": null,
+      "confirmed_at": null
+    }
+  ]
+}

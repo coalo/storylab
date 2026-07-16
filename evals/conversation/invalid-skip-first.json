@@ -1,0 +1,43 @@
+{
+  "schema_version": "2.0",
+  "discussion_id": "project-intake",
+  "title": "项目立项讨论",
+  "status": "active",
+  "revision": 1,
+  "presented_revision": 1,
+  "current_item_id": "Q02",
+  "items": [
+    {
+      "id": "Q01",
+      "order": 1,
+      "topic": "核心体验",
+      "why": "决定读者承诺。",
+      "downstream_effect": "影响项目宪章。",
+      "question": "首要体验是什么？",
+      "recommendation": "只选一种首要体验。",
+      "tradeoff": "多选会分散。",
+      "blocking_scope": ["project-charter"],
+      "status": "pending",
+      "user_answer": null,
+      "confirmation_summary": null,
+      "explicit_confirmation": null,
+      "confirmed_at": null
+    },
+    {
+      "id": "Q02",
+      "order": 2,
+      "topic": "生产模式",
+      "why": "决定门禁。",
+      "downstream_effect": "影响生产状态。",
+      "question": "采用哪种模式？",
+      "recommendation": "采用 pilot。",
+      "tradeoff": "速度较慢。",
+      "blocking_scope": ["production-policy"],
+      "status": "in_discussion",
+      "user_answer": null,
+      "confirmation_summary": null,
+      "explicit_confirmation": null,
+      "confirmed_at": null
+    }
+  ]
+}

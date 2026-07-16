@@ -1,0 +1,33 @@
+{
+  "schema_version": "2.0",
+  "chapter_id": "001",
+  "draft_revision": 1,
+  "checks": [
+    {
+      "domain": "money",
+      "fact_key": "shop_cash_copper",
+      "expected": 12,
+      "observed": 12,
+      "status": "clear",
+      "evidence": "opening transaction paragraph"
+    },
+    {
+      "domain": "location",
+      "fact_key": "lin_yue",
+      "expected": "east-market-shop",
+      "observed": "east-market-shop",
+      "status": "clear",
+      "evidence": "opening setting"
+    }
+  ],
+  "overall": "clear",
+  "proposed_updates": [
+    {
+      "domain": "inventory",
+      "fact_key": "rice_sacks",
+      "value": 1,
+      "source": "chapter-001 final exchange"
+    }
+  ],
+  "notes": "Synthetic contract fixture."
+}

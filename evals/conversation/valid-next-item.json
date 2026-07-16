@@ -1,0 +1,43 @@
+{
+  "schema_version": "2.0",
+  "discussion_id": "project-intake",
+  "title": "项目立项讨论",
+  "status": "active",
+  "revision": 1,
+  "presented_revision": 1,
+  "current_item_id": "Q02",
+  "items": [
+    {
+      "id": "Q01",
+      "order": 1,
+      "topic": "核心阅读体验",
+      "why": "它决定全书优先兑现的情绪承诺。",
+      "downstream_effect": "影响项目宪章、长线结构和文体校准。",
+      "question": "你希望读者最主要获得什么感受？",
+      "recommendation": "先确定一种首要体验，其余作为辅助。",
+      "tradeoff": "首要体验过多会削弱路线优先级。",
+      "blocking_scope": ["project-charter"],
+      "status": "confirmed",
+      "user_answer": "成长和经营成就感。",
+      "confirmation_summary": "以成长和经营成就感为首要体验。",
+      "explicit_confirmation": "用户回复：确认。",
+      "confirmed_at": "2026-07-16T07:15:00Z"
+    },
+    {
+      "id": "Q02",
+      "order": 2,
+      "topic": "生产模式",
+      "why": "它决定早期章节的用户门禁密度。",
+      "downstream_effect": "影响 pilot 与 steady 的切换。",
+      "question": "前几章是否逐章批准？",
+      "recommendation": "前三章采用 pilot。",
+      "tradeoff": "pilot 较慢，但更容易稳定文体。",
+      "blocking_scope": ["production-policy"],
+      "status": "in_discussion",
+      "user_answer": null,
+      "confirmation_summary": null,
+      "explicit_confirmation": null,
+      "confirmed_at": null
+    }
+  ]
+}

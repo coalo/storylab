@@ -1,0 +1,6 @@
+interface:
+  display_name: "Storylab"
+  short_description: "Governed long-form fiction studio workflow"
+  default_prompt: "Use $storylab to initialize or continue a governed long-form fiction project."
+policy:
+  allow_implicit_invocation: true

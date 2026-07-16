@@ -1,0 +1,6 @@
+interface:
+  display_name: "Storylab 章节编辑"
+  short_description: "Safe chapter commissions and writer-view firewall"
+  default_prompt: "Use $storylab-chapter-editor to commission a chapter and compile its writer view."
+policy:
+  allow_implicit_invocation: false

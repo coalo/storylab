@@ -1,0 +1,27 @@
+{
+  "schema_version": "2.0",
+  "discussion_id": "project-intake",
+  "title": "项目立项讨论",
+  "status": "completed",
+  "revision": 1,
+  "presented_revision": 1,
+  "current_item_id": null,
+  "items": [
+    {
+      "id": "Q01",
+      "order": 1,
+      "topic": "核心体验",
+      "why": "决定读者承诺。",
+      "downstream_effect": "影响项目宪章。",
+      "question": "首要体验是什么？",
+      "recommendation": "只选一种首要体验。",
+      "tradeoff": "多选会分散。",
+      "blocking_scope": ["project-charter"],
+      "status": "confirmed",
+      "user_answer": "成长与经营成就感",
+      "confirmation_summary": "以成长和经营成就感为首要体验。",
+      "explicit_confirmation": null,
+      "confirmed_at": null
+    }
+  ]
+}

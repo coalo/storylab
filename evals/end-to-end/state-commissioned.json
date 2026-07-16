@@ -1,0 +1,24 @@
+{
+  "schema_version": "2.0",
+  "project_id": "fixture",
+  "production_mode": "pilot",
+  "taste_freeze": false,
+  "chapters": [
+    {
+      "chapter_id": "001",
+      "status": "commissioned",
+      "commission_revision": 1,
+      "draft_revision": 0,
+      "evidence": {
+        "commission": "故事项目/章节/第001章/章节任务书.md",
+        "writer_view": null,
+        "draft": null,
+        "first_read": null,
+        "editorial_letter": null,
+        "continuity_report": null,
+        "acceptance_record": null
+      },
+      "canon_committed": false
+    }
+  ]
+}

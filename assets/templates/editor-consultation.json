@@ -1,0 +1,24 @@
+{
+  "schema_version": "2.0",
+  "consultation_id": "",
+  "role": "story-editor",
+  "context_revision": 0,
+  "findings": [],
+  "known_constraints": [],
+  "decision_gaps": [],
+  "question_candidates": [
+    {
+      "candidate_id": "Q01",
+      "topic": "",
+      "why": "",
+      "downstream_effect": "",
+      "question": "",
+      "recommendation": "",
+      "tradeoff": "",
+      "blocking_scope": []
+    }
+  ],
+  "recommendations": [],
+  "proposed_asset_patches": [],
+  "needs_user_decision": true
+}

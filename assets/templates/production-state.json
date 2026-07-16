@@ -1,0 +1,24 @@
+{
+  "schema_version": "2.0",
+  "project_id": "",
+  "production_mode": "pilot",
+  "taste_freeze": false,
+  "chapters": [
+    {
+      "chapter_id": "001",
+      "status": "planned",
+      "commission_revision": 0,
+      "draft_revision": 0,
+      "evidence": {
+        "commission": null,
+        "writer_view": null,
+        "draft": null,
+        "first_read": null,
+        "editorial_letter": null,
+        "continuity_report": null,
+        "acceptance_record": null
+      },
+      "canon_committed": false
+    }
+  ]
+}

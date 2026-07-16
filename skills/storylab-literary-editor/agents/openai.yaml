@@ -1,0 +1,6 @@
+interface:
+  display_name: "Storylab 文学编辑"
+  short_description: "Literary diagnosis and responsibility routing"
+  default_prompt: "Use $storylab-literary-editor to diagnose a draft after cold-read notes are frozen."
+policy:
+  allow_implicit_invocation: false

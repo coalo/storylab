@@ -1,0 +1,19 @@
+{
+  "schema_version": "2.0",
+  "project_id": "",
+  "last_accepted_chapter": null,
+  "domains": {
+    "time": {},
+    "location": {},
+    "money": {},
+    "inventory": {},
+    "injury": {},
+    "knowledge": {},
+    "permission": {},
+    "contract": {},
+    "power": {},
+    "relationship_action": {},
+    "world_rule": {}
+  },
+  "pending_updates": []
+}

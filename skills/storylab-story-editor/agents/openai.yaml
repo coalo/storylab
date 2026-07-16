@@ -1,0 +1,6 @@
+interface:
+  display_name: "Storylab 故事总编"
+  short_description: "Long-range story direction and canon governance"
+  default_prompt: "Use $storylab-story-editor to establish or revise long-range story direction."
+policy:
+  allow_implicit_invocation: false

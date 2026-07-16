@@ -1,0 +1,16 @@
+[
+  {
+    "case_id": "explicit-subtext-boundary",
+    "property": "dialogue leaves motive partly implicit",
+    "approved_evidence": "synthetic-approved-anchor-A",
+    "rejected_evidence": "synthetic-rejected-anchor-A",
+    "note": "Contract fixture only; replace with user evidence for project calibration."
+  },
+  {
+    "case_id": "narrative-distance-boundary",
+    "property": "viewpoint remains embodied rather than diagnostic",
+    "approved_evidence": "synthetic-approved-anchor-B",
+    "rejected_evidence": "synthetic-rejected-anchor-B",
+    "note": "Contract fixture only; replace with user evidence for project calibration."
+  }
+]

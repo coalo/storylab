@@ -1,0 +1,6 @@
+interface:
+  display_name: "Storylab 首读者"
+  short_description: "Independent cold reading without planning context"
+  default_prompt: "Use $storylab-first-reader to cold-read a fiction draft without planning context."
+policy:
+  allow_implicit_invocation: false
