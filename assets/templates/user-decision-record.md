@@ -4,7 +4,7 @@ discussion_id: ""
 agenda_revision: 1
 status: active
 
-| item | topic | user answer | confirmed decision | explicit confirmation evidence | confirmed at | downstream update | supersedes |
+| item | topic | selected option or free-text answer | confirmed decision | explicit confirmation evidence | confirmed at | downstream update | supersedes |
 |---|---|---|---|---|---|---|---|
 | Q01 |  |  |  |  |  |  |  |
 

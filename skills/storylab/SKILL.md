@@ -80,20 +80,36 @@ When any role reports decision gaps:
 
 1. Collect and deduplicate its question candidates.
 2. Create or update `故事项目/讨论议程.json` from `../../assets/templates/discussion-agenda.json`, keep specialist returns under `故事项目/专家咨询/` as `咨询-<咨询编号>.json`, and initialize `故事项目/用户决策记录.md` from its template. Use the initializer flags rather than inventing paths.
-3. Validate it with `../../scripts/validate-discussion-state.mjs`.
-4. Show the user the complete numbered discussion list before asking any item.
-5. For every item, show its topic, why it matters, downstream effect, and recommendation when one exists.
-6. Discuss only the current item. Do not ask later items in the same message.
-7. After the user answers, restate a concise decision summary and request explicit confirmation unless the answer already contains an explicit confirmation of that same summary.
-8. Mark the item confirmed only with answer and confirmation evidence, then advance to the next item.
-9. If new items appear, increment the agenda revision and show the complete updated list before continuing.
-10. After all items close, show a consolidated decision record. Project-charter acceptance remains a separate explicit gate.
+3. Start every new decision round with `alignment_gate`; do not generate agenda items yet. The first user-visible item is always a plain-language description of the story direction already reached or the current volume/chapter/taste state. Cover the active promise, scope, accepted constraints, provisional choices, affected downstream work, and the basis artifacts.
+4. After the description, ask only whether it is accurate and whether anything still needs clarification, correction, or addition. Do not show specific challenge questions, options, or recommendations in this message.
+5. If the user adds or corrects anything, update the provisional summary, increment `summary_revision`, preserve the user message reference, present the updated description, and ask the same clarification question again. Continue until the user explicitly says that nothing remains to clarify. Silence, “continue,” partial agreement, or approval of another artifact does not clear this gate.
+6. Only after explicit clearance, regenerate the decision-gap candidates against the clarified summary. Create 2-3 mutually exclusive options for every material question, select one recommended option, and record its rationale and tradeoff. Then set `questions_generated_at` and populate the agenda items.
+7. Validate the state with `../../scripts/validate-discussion-state.mjs`.
+8. Show the user the complete numbered discussion list before asking any item. For every item, show its topic, why it matters, downstream effect, options, recommendation, recommendation rationale, and main tradeoff.
+9. Discuss only the current item. Do not ask later items in the same message. The user may choose an option or provide a different answer.
+10. After the user answers, restate a concise decision summary and request explicit confirmation unless the answer already contains an explicit confirmation of that same summary.
+11. Mark the item confirmed only with answer and confirmation evidence, then advance to the next item.
+12. If new items appear without changing the cleared summary, increment the agenda revision and show the complete updated list before continuing. If the discovery changes the story direction or chapter-state summary, invalidate `alignment_gate` and repeat the description-and-clarification loop before regenerating affected questions.
+13. After all items close, show a consolidated decision record. Clearing alignment and confirming discussion items never substitutes for project-charter, chapter, prose, or taste acceptance; those remain separate explicit gates.
 
 Use this user-facing shape:
 
 ```text
+当前已达成的故事方向 / 章节情况（摘要 v<summary_revision>）
+1. <reader promise or immediate chapter goal>
+2. <scope and accepted constraints>
+3. <provisional choices and downstream effect>
+
+以上描述是否准确？还有需要澄清、补充或修正的内容吗？
+```
+
+After the user explicitly says nothing remains to clarify, use:
+
+```text
 讨论清单 v<revision>（已确认 <n>/<total>）
 Q01. <topic> — <why it matters> — <downstream effect>
+  A. <option and tradeoff>
+  B. <option and tradeoff>（推荐：<reason>）
 Q02. ...
 
 现在只讨论 Q01：<question>

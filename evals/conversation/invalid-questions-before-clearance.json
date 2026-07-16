@@ -1,0 +1,53 @@
+{
+  "schema_version": "3.0",
+  "discussion_id": "project-intake",
+  "title": "项目方向讨论",
+  "status": "draft",
+  "revision": 1,
+  "presented_revision": 0,
+  "current_item_id": null,
+  "alignment_gate": {
+    "scope": "project_direction",
+    "summary_revision": 1,
+    "summary": "故事方向仍等待用户确认。",
+    "basis_refs": ["故事项目/项目章程.md#草案"],
+    "clarification_turns": [
+      {
+        "id": "C01",
+        "summary_revision_presented": 1,
+        "prompt": "以上描述是否准确？还有需要澄清、补充或修正的内容吗？",
+        "user_response": null,
+        "needs_clarification": null,
+        "user_message_ref": null,
+        "recorded_at": null
+      }
+    ],
+    "status": "awaiting_user",
+    "cleared_by_user_message_ref": null,
+    "cleared_at": null
+  },
+  "questions_generated_at": "2026-07-16T08:03:00Z",
+  "items": [
+    {
+      "id": "Q01",
+      "order": 1,
+      "topic": "核心体验",
+      "why": "它决定读者承诺。",
+      "downstream_effect": "影响项目章程。",
+      "question": "首要体验是什么？",
+      "options": [
+        {"id": "A", "label": "成长", "description": "强调成长。", "tradeoff": "经营感较弱。"},
+        {"id": "B", "label": "经营", "description": "强调经营。", "tradeoff": "人物弧线较弱。"}
+      ],
+      "recommended_option_id": "A",
+      "recommendation": "推荐 A。",
+      "recommendation_reason": "与草案一致。",
+      "blocking_scope": ["project-charter"],
+      "status": "pending",
+      "user_answer": null,
+      "confirmation_summary": null,
+      "explicit_confirmation": null,
+      "confirmed_at": null
+    }
+  ]
+}

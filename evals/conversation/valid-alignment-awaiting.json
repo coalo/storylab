@@ -1,16 +1,19 @@
 {
   "schema_version": "3.0",
-  "discussion_id": "",
-  "title": "",
+  "discussion_id": "chapter-001-intake",
+  "title": "第001章方向讨论",
   "status": "alignment",
   "revision": 1,
   "presented_revision": 0,
   "current_item_id": null,
   "alignment_gate": {
-    "scope": "project_direction",
+    "scope": "chapter_state",
     "summary_revision": 1,
-    "summary": "",
-    "basis_refs": [],
+    "summary": "第001章已经确定从主角第一次独立接单切入，重点呈现她在经营压力下作出的第一次取舍。",
+    "basis_refs": [
+      "故事项目/项目章程.md#核心体验",
+      "故事项目/故事弧线图.md#第一幕"
+    ],
     "clarification_turns": [
       {
         "id": "C01",

@@ -22,7 +22,7 @@ Each status identifies a valid artifact and the next accountable role.
 
 `taste_freeze` is an orthogonal project flag. When true, do not commission or draft new prose.
 
-`故事项目/讨论议程.json` is an orthogonal human-decision state. A blocking open item pauses only the affected downstream stage.
+`故事项目/讨论议程.json` is an orthogonal human-decision state. Its alignment gate must clear before concrete agenda items are generated; a blocking open item then pauses only the affected downstream stage.
 
 ## Routing rules
 
@@ -45,7 +45,7 @@ Never ask the author to solve a planning failure through prettier sentences.
 
 Use `pilot` mode for project charter, voice sample, and early chapters: require explicit user acceptance. Use `steady` mode only after the user authorizes a batch policy. Major viewpoint, voice, relationship, premise, or ending-direction changes always return to an explicit gate.
 
-Before asking gate questions, the Storylab host must display the complete discussion agenda. Keep exactly one item `in_discussion`. Record the user's answer, restate the proposed decision, obtain explicit confirmation, then advance. The final charter or chapter gate is separate from confirming its component discussion items.
+Before generating gate questions, the Storylab host must first describe the achieved story direction or current chapter state and repeat clarification until the user explicitly says nothing remains. It then displays the complete discussion agenda with 2-3 options and one recommendation per item. Keep exactly one item `in_discussion`. Record the user's answer, restate the proposed decision, obtain explicit confirmation, then advance. Alignment clearance and component decisions remain separate from the final charter or chapter gate.
 
 ## Recovery
 

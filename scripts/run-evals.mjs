@@ -33,6 +33,11 @@ run("discussion agenda rejects confirmation without evidence", "validate-discuss
 run("discussion agenda rejects asking before list presentation", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/invalid-unpresented.json")], 1);
 run("discussion agenda advances after explicit item confirmation", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/valid-next-item.json"), "--previous", path.join(root, "evals/conversation/valid-active.json")]);
 run("discussion agenda rejects skipping an earlier open item", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/invalid-skip-first.json")], 1);
+run("discussion alignment accepts the initial achieved-state summary", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/valid-alignment-awaiting.json")]);
+run("discussion agenda accepts explicit alignment clearance and option contracts", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/valid-alignment-cleared-agenda.json")]);
+run("discussion agenda rejects questions before alignment clearance", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/invalid-questions-before-clearance.json")], 1);
+run("discussion agenda rejects false alignment clearance", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/invalid-false-alignment-clearance.json")], 1);
+run("discussion agenda rejects incomplete option contracts", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/invalid-option-contract.json")], 1);
 
 const authorSkill = fs.readFileSync(path.join(root, "skills/storylab-author/SKILL.md"), "utf8");
 const firstReaderSkill = fs.readFileSync(path.join(root, "skills/storylab-first-reader/SKILL.md"), "utf8");
@@ -77,6 +82,34 @@ results.push({
     && hostSkill.includes("Discuss only the current item")
     && hostSkill.includes("request explicit confirmation")
     && hostSkill.includes("讨论议程.json")
+});
+results.push({
+  name: "host clears the achieved-state alignment gate before generating questions",
+  passed: hostSkill.includes("alignment_gate")
+    && hostSkill.includes("explicitly says that nothing remains to clarify")
+    && hostSkill.includes("Only after explicit clearance")
+    && hostSkill.includes("2-3 mutually exclusive options")
+    && hostSkill.indexOf("alignment_gate") < hostSkill.indexOf("Only after explicit clearance")
+});
+results.push({
+  name: "conversation protocol orders iterative clarification before agenda generation",
+  passed: conversationProtocol.includes("## Align the achieved story state before building the agenda")
+    && conversationProtocol.includes("Do not reveal question candidates, options, or recommendations yet")
+    && conversationProtocol.includes("2-3 mutually exclusive options")
+    && conversationProtocol.indexOf("## Align the achieved story state before building the agenda") < conversationProtocol.indexOf("## Build the agenda")
+});
+
+const discussionTemplate = JSON.parse(fs.readFileSync(path.join(root, "assets/templates/discussion-agenda.json"), "utf8"));
+results.push({
+  name: "new discussion rounds start with an empty schema 3 alignment gate",
+  passed: discussionTemplate.schema_version === "3.0"
+    && discussionTemplate.status === "alignment"
+    && discussionTemplate.current_item_id === null
+    && discussionTemplate.alignment_gate?.status === "awaiting_user"
+    && discussionTemplate.alignment_gate?.clarification_turns?.length === 1
+    && discussionTemplate.alignment_gate?.clarification_turns?.[0]?.needs_clarification === null
+    && discussionTemplate.questions_generated_at === null
+    && discussionTemplate.items?.length === 0
 });
 
 const consultationTemplate = JSON.parse(fs.readFileSync(path.join(root, "assets/templates/editor-consultation.json"), "utf8"));

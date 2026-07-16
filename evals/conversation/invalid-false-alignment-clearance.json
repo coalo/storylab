@@ -1,0 +1,31 @@
+{
+  "schema_version": "3.0",
+  "discussion_id": "project-intake",
+  "title": "项目方向讨论",
+  "status": "completed",
+  "revision": 1,
+  "presented_revision": 1,
+  "current_item_id": null,
+  "alignment_gate": {
+    "scope": "project_direction",
+    "summary_revision": 1,
+    "summary": "故事将以经营成长为核心。",
+    "basis_refs": ["故事项目/项目章程.md#草案"],
+    "clarification_turns": [
+      {
+        "id": "C01",
+        "summary_revision_presented": 1,
+        "prompt": "以上描述是否准确？还有需要澄清、补充或修正的内容吗？",
+        "user_response": "还需要补充人物关系。",
+        "needs_clarification": true,
+        "user_message_ref": "user-message://clarification-001",
+        "recorded_at": "2026-07-16T08:00:00Z"
+      }
+    ],
+    "status": "cleared",
+    "cleared_by_user_message_ref": "user-message://clarification-001",
+    "cleared_at": "2026-07-16T08:00:00Z"
+  },
+  "questions_generated_at": "2026-07-16T08:01:00Z",
+  "items": []
+}
