@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "source_id": "",
+  "source_sha256": "",
+  "taxonomy_revision": 1,
+  "status": "pending",
+  "coverage_findings": [],
+  "provenance_findings": [],
+  "silent_omission_findings": [],
+  "risk_decision_separation_findings": [],
+  "context_leakage_findings": [],
+  "blocking_repairs": [],
+  "audited_at": null
+}

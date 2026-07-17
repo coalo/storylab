@@ -6,8 +6,11 @@ import { fileURLToPath } from "node:url";
 import {
   AUTHORITY_ENTRIES,
   PROJECT_PATH_CONTRACT,
+  SOURCE_ANALYSIS_ENTRIES,
   chapterDirectory,
   consultationFileName,
+  sourceAnalysisRoot,
+  sourceBatchDirectory,
   storyRoot
 } from "./project-path-contract.mjs";
 
@@ -34,6 +37,8 @@ function safeIdentifier(valueToCheck, label) {
 
 const projectRoot = path.resolve(value("--project-root") || process.cwd());
 const withDiscussion = args.includes("--with-discussion");
+const sourceBatchId = value("--source-batch");
+const withSourceAnalysis = args.includes("--with-source-analysis") || Boolean(sourceBatchId);
 const chapterId = value("--chapter");
 const chapterStage = value("--chapter-stage");
 const consultationId = value("--consultation");
@@ -41,6 +46,7 @@ const consultationId = value("--consultation");
 if (chapterStage && !chapterId) fail("--chapter-stage requires --chapter <chapter-id>");
 if (chapterId && !chapterStage) fail("--chapter requires --chapter-stage <stage>");
 if (chapterId) safeIdentifier(chapterId, "chapter id");
+if (sourceBatchId) safeIdentifier(sourceBatchId, "source batch id");
 if (consultationId) {
   safeIdentifier(consultationId, "consultation id");
   if (/[A-Za-z]/u.test(consultationId)) fail("consultation id must use Chinese characters or digits, not Latin letters");
@@ -105,6 +111,19 @@ for (const entry of AUTHORITY_ENTRIES) copyMissing(entry, targetRoot);
 
 if (withDiscussion) {
   for (const entry of Object.values(PROJECT_PATH_CONTRACT.discussionFiles)) copyMissing(entry, targetRoot);
+}
+
+if (withSourceAnalysis) {
+  const directory = sourceAnalysisRoot(projectRoot);
+  ensureDirectory(directory);
+  ensureDirectory(path.join(directory, PROJECT_PATH_CONTRACT.directories.sourceBatches));
+  for (const entry of SOURCE_ANALYSIS_ENTRIES) copyMissing(entry, directory);
+}
+
+if (sourceBatchId) {
+  const directory = sourceBatchDirectory(projectRoot, sourceBatchId);
+  ensureDirectory(directory);
+  copyMissing(PROJECT_PATH_CONTRACT.sourceBatch, directory);
 }
 
 if (chapterId) {

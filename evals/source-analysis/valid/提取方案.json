@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "source_id": "source-fixture",
+  "revision": 1,
+  "status": "approved",
+  "coverage_categories": [
+    "reader_promise_and_serial_rewards",
+    "protagonist_engine",
+    "supporting_character_agency",
+    "relationship_networks",
+    "romance_intimacy_and_multi_partner_dynamics",
+    "organization_power_and_resource_flows",
+    "event_causality",
+    "suspense_plant_and_payoff",
+    "world_rules_and_terminology",
+    "themes_voice_and_tone"
+  ],
+  "risk_categories": [],
+  "granularity": "recurring_engine",
+  "explicit_exclusions": [],
+  "batch_policy": {
+    "unit": "volume_or_section",
+    "maximum_units_per_batch": 1,
+    "checkpoint": "each_batch"
+  },
+  "user_confirmation": {
+    "user_message_ref": "user-message://source-scope-001",
+    "recorded_at": "2026-07-17T08:00:00Z"
+  }
+}

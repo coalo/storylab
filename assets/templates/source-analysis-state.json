@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "source_id": "",
+  "source_sha256": "",
+  "status": "uninitialized",
+  "taxonomy_revision": 0,
+  "expected_batch_ids": [],
+  "completed_batch_ids": [],
+  "artifacts": {
+    "manifest": "故事项目/源作解析/源作清单.json",
+    "structure_index": "故事项目/源作解析/源作结构索引.json",
+    "reconnaissance": "故事项目/源作解析/侦察报告.json",
+    "extraction_spec": "故事项目/源作解析/提取方案.json",
+    "synthesis": "故事项目/源作解析/全书综合.json",
+    "audit": "故事项目/源作解析/提取审计.json"
+  },
+  "pending_gate": null,
+  "invalidated_artifacts": []
+}

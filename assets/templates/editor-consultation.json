@@ -1,5 +1,5 @@
 {
-  "schema_version": "2.0",
+  "schema_version": "2.1",
   "consultation_id": "",
   "role": "story-editor",
   "context_revision": 0,
@@ -13,7 +13,13 @@
       "why": "",
       "downstream_effect": "",
       "question": "",
-      "recommendation": "",
+      "decision_kind": "professional",
+      "selection_mode": "single",
+      "option_candidates": [],
+      "recommended_option_id": null,
+      "recommendation": null,
+      "recommendation_reason": null,
+      "neutrality_note": null,
       "tradeoff": "",
       "blocking_scope": []
     }

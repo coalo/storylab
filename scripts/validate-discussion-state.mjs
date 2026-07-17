@@ -21,12 +21,14 @@ function readJson(file) {
   }
 }
 
-const supportedSchemaVersions = ["2.0", "3.0"];
+const supportedSchemaVersions = ["2.0", "3.0", "3.1"];
 const agendaStatuses = ["alignment", "draft", "active", "paused", "completed", "cancelled"];
 const itemStatuses = ["pending", "in_discussion", "confirmed", "deferred", "removed"];
 const closedStatuses = ["confirmed", "deferred", "removed"];
 const alignmentScopes = ["project_direction", "volume_direction", "chapter_state", "taste_calibration", "other"];
 const alignmentStatuses = ["awaiting_user", "clarifying", "cleared"];
+const decisionKinds = ["professional", "user_taste"];
+const selectionModes = ["single", "multi", "freeform"];
 
 function nonEmptyString(value) {
   return typeof value === "string" && value.trim().length > 0;
@@ -39,7 +41,7 @@ function validTimestamp(value) {
 function validateAlignmentGate(agenda, errors) {
   const gate = agenda.alignment_gate;
   if (!gate || typeof gate !== "object" || Array.isArray(gate)) {
-    errors.push("alignment_gate is required for schema 3.0");
+    errors.push("alignment_gate is required for schema 3.x");
     return;
   }
 
@@ -145,8 +147,9 @@ function validateAlignmentGate(agenda, errors) {
 function validate(agenda) {
   const errors = [];
 
-  if (!supportedSchemaVersions.includes(agenda.schema_version)) errors.push("schema_version must be 2.0 or 3.0");
-  const isCurrent = agenda.schema_version === "3.0";
+  if (!supportedSchemaVersions.includes(agenda.schema_version)) errors.push("schema_version must be 2.0, 3.0, or 3.1");
+  const isCurrent = ["3.0", "3.1"].includes(agenda.schema_version);
+  const supportsTasteNeutrality = agenda.schema_version === "3.1";
   if (!nonEmptyString(agenda.discussion_id)) errors.push("discussion_id is required");
   if (!nonEmptyString(agenda.title)) errors.push("title is required");
   if (!agendaStatuses.includes(agenda.status) || (!isCurrent && agenda.status === "alignment")) errors.push(`invalid agenda status: ${agenda.status}`);
@@ -191,8 +194,19 @@ function validate(agenda) {
       if (!nonEmptyString(item[field])) errors.push(`${label}: ${field} is required`);
     }
     if (isCurrent) {
+      const decisionKind = supportsTasteNeutrality ? item.decision_kind : "professional";
+      const selectionMode = supportsTasteNeutrality ? item.selection_mode : "single";
+      if (supportsTasteNeutrality && !decisionKinds.includes(decisionKind)) {
+        errors.push(`${label}: decision_kind must be professional or user_taste`);
+      }
+      if (supportsTasteNeutrality && !selectionModes.includes(selectionMode)) {
+        errors.push(`${label}: selection_mode must be single, multi, or freeform`);
+      }
       const options = Array.isArray(item.options) ? item.options : [];
-      if (options.length < 2 || options.length > 3) errors.push(`${label}: options must contain 2 or 3 choices`);
+      const maximumOptions = decisionKind === "user_taste" ? 7 : 3;
+      if (options.length < 2 || options.length > maximumOptions) {
+        errors.push(`${label}: options must contain 2 to ${maximumOptions} choices`);
+      }
       const optionIds = new Set();
       for (const option of options) {
         const optionLabel = `${label} option ${option?.id || "<missing>"}`;
@@ -203,11 +217,18 @@ function validate(agenda) {
           if (!nonEmptyString(option?.[field])) errors.push(`${optionLabel}: ${field} is required`);
         }
       }
-      if (!nonEmptyString(item.recommended_option_id) || !optionIds.has(item.recommended_option_id)) {
-        errors.push(`${label}: recommended_option_id must reference one option`);
+      if (decisionKind === "user_taste") {
+        if (item.recommended_option_id !== null) errors.push(`${label}: user_taste must not set recommended_option_id`);
+        if (item.recommendation !== null) errors.push(`${label}: user_taste must not set recommendation`);
+        if (item.recommendation_reason !== null) errors.push(`${label}: user_taste must not set recommendation_reason`);
+        if (!nonEmptyString(item.neutrality_note)) errors.push(`${label}: user_taste requires neutrality_note`);
+      } else {
+        if (!nonEmptyString(item.recommended_option_id) || !optionIds.has(item.recommended_option_id)) {
+          errors.push(`${label}: recommended_option_id must reference one option`);
+        }
+        if (!nonEmptyString(item.recommendation)) errors.push(`${label}: recommendation is required`);
+        if (!nonEmptyString(item.recommendation_reason)) errors.push(`${label}: recommendation_reason is required`);
       }
-      if (!nonEmptyString(item.recommendation)) errors.push(`${label}: recommendation is required`);
-      if (!nonEmptyString(item.recommendation_reason)) errors.push(`${label}: recommendation_reason is required`);
     }
     if (!Array.isArray(item.blocking_scope)) errors.push(`${label}: blocking_scope must be an array`);
     if (!itemStatuses.includes(item.status)) errors.push(`${label}: invalid status ${item.status}`);

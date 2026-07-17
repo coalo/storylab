@@ -2,7 +2,7 @@
 
 Only the story editor may add or inspect raw-source references in this file.
 
-| decision_id | source | authorization | extracted asset | decision | destination | rationale | date | supersedes |
+| decision_id | source | provenance | extracted asset | decision | destination | rationale | date | supersedes |
 |---|---|---|---|---|---|---|---|---|
 |  |  |  |  | keep / distill / discard |  |  |  |  |
 

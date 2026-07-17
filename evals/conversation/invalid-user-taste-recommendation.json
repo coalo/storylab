@@ -1,0 +1,70 @@
+{
+  "schema_version": "3.1",
+  "discussion_id": "relationship-taste-intake",
+  "title": "关系结构口味讨论",
+  "status": "active",
+  "revision": 1,
+  "presented_revision": 1,
+  "current_item_id": "Q01",
+  "alignment_gate": {
+    "scope": "taste_calibration",
+    "summary_revision": 1,
+    "summary": "源作存在持续的多关系引擎；当前确认目标作品希望采用何种关系结构。",
+    "basis_refs": [
+      "故事项目/源作解析/全书综合.json#P-MULTI-001"
+    ],
+    "clarification_turns": [
+      {
+        "id": "C01",
+        "summary_revision_presented": 1,
+        "prompt": "以上描述是否准确？还有需要澄清、补充或修正的内容吗？",
+        "user_response": "准确，没有补充。",
+        "needs_clarification": false,
+        "user_message_ref": "user-message://taste-clearance-001",
+        "recorded_at": "2026-07-17T09:10:00Z"
+      }
+    ],
+    "status": "cleared",
+    "cleared_by_user_message_ref": "user-message://taste-clearance-001",
+    "cleared_at": "2026-07-17T09:10:00Z"
+  },
+  "questions_generated_at": "2026-07-17T09:11:00Z",
+  "items": [
+    {
+      "id": "Q01",
+      "order": 1,
+      "topic": "目标作品的多关系结构",
+      "why": "它决定情感回报和角色配置。",
+      "downstream_effect": "影响关系路线图。",
+      "question": "你希望如何处理后宫引擎？",
+      "decision_kind": "user_taste",
+      "selection_mode": "single",
+      "options": [
+        {
+          "id": "A",
+          "label": "删除后宫线",
+          "description": "只保留单一关系。",
+          "tradeoff": "源作关系回报被大幅改写。"
+        },
+        {
+          "id": "B",
+          "label": "保留后宫线",
+          "description": "保留多关系结构。",
+          "tradeoff": "需要更多角色篇幅。"
+        }
+      ],
+      "recommended_option_id": "A",
+      "recommendation": "推荐删除后宫线。",
+      "recommendation_reason": "编辑认为这样更正确。",
+      "neutrality_note": "表面声称由用户决定。",
+      "blocking_scope": [
+        "relationship-route-map"
+      ],
+      "status": "in_discussion",
+      "user_answer": null,
+      "confirmation_summary": null,
+      "explicit_confirmation": null,
+      "confirmed_at": null
+    }
+  ]
+}

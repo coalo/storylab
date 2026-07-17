@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "source_id": "source-fixture",
+  "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "unit_type": "volume_or_section",
+  "units": [
+    {
+      "unit_id": "V01",
+      "label": "Volume 1",
+      "start_locator": "chapter-001",
+      "end_locator": "chapter-010"
+    }
+  ],
+  "expected_batch_ids": ["001"],
+  "coverage_complete": true
+}

@@ -24,6 +24,8 @@ Each status identifies a valid artifact and the next accountable role.
 
 `故事项目/讨论议程.json` is an orthogonal human-decision state. Its alignment gate must clear before concrete agenda items are generated; a blocking open item then pauses only the affected downstream stage.
 
+`故事项目/源作解析/解析状态.json` governs user-supplied source analysis before any source asset enters a transfer gate. Follow `source-analysis-contract.md`; a source-risk finding never silently removes an observed asset.
+
 ## Routing rules
 
 - Route language, dialogue, viewpoint, exposition, embodiment, and local pacing to `author_revision`.
@@ -45,7 +47,7 @@ Never ask the author to solve a planning failure through prettier sentences.
 
 Use `pilot` mode for project charter, voice sample, and early chapters: require explicit user acceptance. Use `steady` mode only after the user authorizes a batch policy. Major viewpoint, voice, relationship, premise, or ending-direction changes always return to an explicit gate.
 
-Before generating gate questions, the Storylab host must first describe the achieved story direction or current chapter state and repeat clarification until the user explicitly says nothing remains. It then displays the complete discussion agenda with 2-3 options and one recommendation per item. Keep exactly one item `in_discussion`. Record the user's answer, restate the proposed decision, obtain explicit confirmation, then advance. Alignment clearance and component decisions remain separate from the final charter or chapter gate.
+Before generating gate questions, the Storylab host must first describe the achieved story direction or current chapter state and repeat clarification until the user explicitly says nothing remains. It then displays the complete discussion agenda. Professional items use 2-3 mutually exclusive options and one recommendation. User-taste items use 2-7 composable or free-form options, consequences without a default recommendation, and no ideological or moral pre-filtering. Keep exactly one item `in_discussion`. Record the user's answer, restate the proposed decision, obtain explicit confirmation, then advance. Alignment clearance and component decisions remain separate from the final charter or chapter gate.
 
 ## Recovery
 

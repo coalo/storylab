@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "source_id": "",
+  "source_sha256": "",
+  "batch_id": "",
+  "taxonomy_revision": 1,
+  "assigned_unit_ids": [],
+  "read_complete": false,
+  "observations": [],
+  "risk_assessments": [],
+  "coverage_matrix": [
+    {
+      "category": "reader_promise_and_serial_rewards",
+      "status": "uncertain",
+      "observation_ids": [],
+      "notes": ""
+    },
+    {
+      "category": "protagonist_engine",
+      "status": "uncertain",
+      "observation_ids": [],
+      "notes": ""
+    },
+    {
+      "category": "supporting_character_agency",
+      "status": "uncertain",
+      "observation_ids": [],
+      "notes": ""
+    },
+    {
+      "category": "relationship_networks",
+      "status": "uncertain",
+      "observation_ids": [],
+      "notes": ""
+    },
+    {
+      "category": "romance_intimacy_and_multi_partner_dynamics",
+      "status": "uncertain",
+      "observation_ids": [],
+      "notes": ""
+    },
+    {
+      "category": "organization_power_and_resource_flows",
+      "status": "uncertain",
+      "observation_ids": [],
+      "notes": ""
+    },
+    {
+      "category": "event_causality",
+      "status": "uncertain",
+      "observation_ids": [],
+      "notes": ""
+    },
+    {
+      "category": "suspense_plant_and_payoff",
+      "status": "uncertain",
+      "observation_ids": [],
+      "notes": ""
+    },
+    {
+      "category": "world_rules_and_terminology",
+      "status": "uncertain",
+      "observation_ids": [],
+      "notes": ""
+    },
+    {
+      "category": "themes_voice_and_tone",
+      "status": "uncertain",
+      "observation_ids": [],
+      "notes": ""
+    }
+  ],
+  "unresolved_questions": []
+}

@@ -7,7 +7,10 @@ Isolation is enforced by allowlisted handoffs, not by asking a context-rich mode
 | Role | Allowed | Excluded |
 |---|---|---|
 | Storylab host | statuses, artifact paths, consultations, user answers, gate decisions | creative authorship and independent literary verdicts |
-| Story editor | all project direction, taste evidence, authorized legacy | novel drafting and final literary acceptance |
+| Source reader | one user-supplied source batch, manifest/index entry, approved extraction specification | target plans, user transfer preferences, other readers' conclusions |
+| Source synthesizer | validated source batch reports, manifest/index, extraction specification | target plans, user transfer preferences, raw source except bounded evidence lookup |
+| Source auditor | source-analysis artifacts, bounded disputed raw-source lookups | authority to decide taste or inheritance |
+| Story editor | all project direction, taste evidence, audited source synthesis and transfer-gate record | broad raw source by default, novel drafting, final literary acceptance |
 | Chapter editor | current plans, canon, continuity preflight | cold-read notes before routing, raw legacy, scoring controls |
 | Author | validated writer view, included approved prose, problem-focused editorial letter | all other project files |
 | First reader | draft, reader-facing promise, later approved taste anchors | commission, plan, rationale, continuity accounts |
@@ -23,7 +26,7 @@ Only the Storylab host communicates with the user. Every specialist role returns
 - a bounded decision request containing `needs_user_decision`, question candidates, impact, and blocking scope;
 - a missing-input status directed to the host.
 
-The host may clarify wording and remove duplicates, but must preserve which statements are user decisions and which are specialist recommendations. User replies are relayed back to the same role context when continuing its reasoning is useful.
+The host may clarify wording and merge truly equivalent duplicates, but must preserve distinct taste dimensions and preserve which statements are source observations, professional risks, specialist recommendations, and user decisions. User replies are relayed back to the same role context when continuing its reasoning is useful.
 
 ## `章节任务书.md` contract
 
@@ -57,6 +60,8 @@ Reject an author packet containing:
 ## Fresh-context rule
 
 Run author, first reader, and literary editor in separate fresh contexts. Give each context explicit readable paths rather than a broad project directory. If a role requests an excluded fact, send the request upstream; do not widen permissions silently.
+
+Run source readers, the source synthesizer, and the source auditor in separate fresh contexts. A source reader never receives target-project preferences; this prevents target convenience, moral preference, or an anticipated recommendation from changing what the source report says exists.
 
 ## Revision feedback
 

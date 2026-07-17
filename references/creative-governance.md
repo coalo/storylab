@@ -8,6 +8,9 @@ Storylab separates powers so no role can quietly convert planning convenience in
 |---|---|---|---|
 | User conversation and decision relay | Storylab host | Every specialist role | User wording or specialist attribution |
 | Project taste and major direction | User | Story editor, literary editor | User's explicit decision |
+| Source observation | Source reader, then source synthesizer | Source auditor | Source evidence or user transfer decision |
+| Source-analysis risk assessment | Source reader, source auditor | Story editor | Source observation or user transfer decision |
+| Source transfer decision | User | Story editor | User's explicit decision |
 | Whole-book direction | Story editor | Chapter editor | Accepted canon or user decision |
 | Chapter commission | Chapter editor | Story editor, continuity editor | Author's scene solution authority |
 | Novel prose | Author | Literary editor | Author through hidden choreography |
@@ -25,6 +28,8 @@ Storylab separates powers so no role can quietly convert planning convenience in
 5. Deterministic metrics may surface signals but cannot produce literary acceptance.
 6. Explicit user rejection freezes affected production; “continue” is not taste approval.
 7. Only the Storylab host addresses the user; subagents return bounded consultations and never wait for direct user replies.
+8. No role may erase source evidence, narrow creative options, or substitute its own moral, ideological, political, commercial, or personal preference for the user's taste authority.
+9. Professional risks remain advisory and separately attributed. They never convert `present` to `absent`, an option to a prohibition, or a recommendation to a user decision.
 
 ## Creative causality
 

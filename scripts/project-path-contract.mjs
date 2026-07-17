@@ -11,12 +11,14 @@ import { fileURLToPath } from "node:url";
  * Codex plugin package paths are intentionally outside this contract.
  */
 export const PROJECT_PATH_CONTRACT = Object.freeze({
-  schemaVersion: "1.0",
+  schemaVersion: "1.1",
   rootDirectory: "故事项目",
   directories: Object.freeze({
     chapters: "章节",
     consultations: "专家咨询",
-    migrationRecords: "迁移记录"
+    migrationRecords: "迁移记录",
+    sourceAnalysis: "源作解析",
+    sourceBatches: "批次"
   }),
   authorityFiles: Object.freeze({
     projectCharter: Object.freeze({ template: "project-charter.md", runtime: "项目章程.md" }),
@@ -32,6 +34,20 @@ export const PROJECT_PATH_CONTRACT = Object.freeze({
   discussionFiles: Object.freeze({
     agenda: Object.freeze({ template: "discussion-agenda.json", runtime: "讨论议程.json" }),
     userDecisionRecord: Object.freeze({ template: "user-decision-record.md", runtime: "用户决策记录.md" })
+  }),
+  sourceAnalysisFiles: Object.freeze({
+    manifest: Object.freeze({ template: "source-manifest.json", runtime: "源作清单.json" }),
+    structureIndex: Object.freeze({ template: "source-structure-index.json", runtime: "源作结构索引.json" }),
+    state: Object.freeze({ template: "source-analysis-state.json", runtime: "解析状态.json" }),
+    reconnaissance: Object.freeze({ template: "source-reconnaissance.json", runtime: "侦察报告.json" }),
+    extractionSpec: Object.freeze({ template: "source-extraction-spec.json", runtime: "提取方案.json" }),
+    synthesis: Object.freeze({ template: "source-synthesis.json", runtime: "全书综合.json" }),
+    audit: Object.freeze({ template: "source-audit.json", runtime: "提取审计.json" })
+  }),
+  sourceBatch: Object.freeze({
+    template: "source-batch-report.json",
+    runtime: "批次报告.json",
+    directoryPattern: "批次-{批次编号}"
   }),
   chapterFiles: Object.freeze({
     commission: Object.freeze({ template: "chapter-commission.md", runtime: "章节任务书.md" }),
@@ -56,10 +72,12 @@ export const PROJECT_PATH_CONTRACT = Object.freeze({
 
 export const AUTHORITY_ENTRIES = Object.freeze(Object.values(PROJECT_PATH_CONTRACT.authorityFiles));
 export const DISCUSSION_ENTRIES = Object.freeze(Object.values(PROJECT_PATH_CONTRACT.discussionFiles));
+export const SOURCE_ANALYSIS_ENTRIES = Object.freeze(Object.values(PROJECT_PATH_CONTRACT.sourceAnalysisFiles));
 export const CHAPTER_ENTRIES = Object.freeze(Object.values(PROJECT_PATH_CONTRACT.chapterFiles));
 export const ALL_TEMPLATE_ENTRIES = Object.freeze([
   ...AUTHORITY_ENTRIES,
   ...DISCUSSION_ENTRIES,
+  ...SOURCE_ANALYSIS_ENTRIES,
   ...CHAPTER_ENTRIES
 ]);
 
@@ -74,6 +92,23 @@ export function storyRoot(projectRoot) {
 
 export function chapterDirectory(projectRoot, chapterId) {
   return path.join(storyRoot(projectRoot), PROJECT_PATH_CONTRACT.directories.chapters, chapterFolderName(chapterId));
+}
+
+export function sourceAnalysisRoot(projectRoot) {
+  return path.join(storyRoot(projectRoot), PROJECT_PATH_CONTRACT.directories.sourceAnalysis);
+}
+
+export function sourceBatchDirectory(projectRoot, batchId) {
+  return path.join(
+    sourceAnalysisRoot(projectRoot),
+    PROJECT_PATH_CONTRACT.directories.sourceBatches,
+    sourceBatchFolderName(batchId)
+  );
+}
+
+export function sourceBatchFolderName(batchId) {
+  const value = String(batchId);
+  return /^批次-.+/u.test(value) ? value : `批次-${value}`;
 }
 
 export function chapterFolderName(chapterId) {

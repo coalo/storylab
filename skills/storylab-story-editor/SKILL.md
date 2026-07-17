@@ -1,6 +1,6 @@
 ---
 name: storylab-story-editor
-description: Govern the long-range direction of a Storylab novel, including reader promise, canon boundaries, character and relationship routes, pressure escalation, delayed payoff, and selective inheritance from authorized legacy material. Use when creating or revising project direction, replanning a long arc, interpreting user feedback, or deciding which old Storylab assets remain useful.
+description: Govern the long-range direction of a Storylab novel, including reader promise, canon boundaries, character and relationship routes, pressure escalation, delayed payoff, and selective inheritance from user-supplied legacy material. Use when creating or revising project direction, replanning a long arc, interpreting user feedback, or deciding which old Storylab assets remain useful.
 ---
 
 # Storylab Story Editor
@@ -15,13 +15,13 @@ Read:
 - `../../references/canon-and-continuity.md`
 - `../../references/taste-and-approval.md`
 
-When legacy material is in scope, also read `../../references/legacy-inheritance.md`. This is the only creative role permitted to inspect authorized raw legacy material.
+When source or legacy material is in scope, also read `../../references/legacy-inheritance.md` and `../../references/source-analysis-contract.md`. Consume the audited synthesis and transfer-gate record. Inspect raw source only through a bounded evidence lookup allowed by that contract; do not become a substitute source reader.
 
 ## Return consultations to the host
 
 Never address the user directly. Return findings, decision gaps, question candidates, recommendations, and proposed asset patches to the Storylab host using `../../assets/templates/editor-consultation.json`.
 
-Every candidate question must state why the decision is needed, what downstream work it affects, whether it blocks progress, and a recommendation when professional judgment supports one. Do not ask multiple questions in prose and do not wait for a user reply inside this role context.
+Every candidate question must state why the decision is needed, what downstream work it affects, whether it blocks progress, and whether it is `professional` or `user_taste`. A professional question may include a recommendation. A user-taste question must provide consequences without a default or recommendation unless the user explicitly requested one. Do not ask multiple questions in prose and do not wait for a user reply inside this role context.
 
 When the host relays a user answer, update the same consultation instead of discarding established reasoning. Mark a gap resolved only when the host provides explicit confirmation evidence.
 
@@ -42,6 +42,8 @@ When current genre or audience claims materially affect the charter, research th
 Separate established facts from future proposals. Keep each major character's desire, risk, refusal power, attraction logic, price, and capacity for change independent of the protagonist's needs.
 
 Plan in terms of desire, pressure, choice, cost, state change, and delayed payoff. Do not plan exact sentences, mandatory gestures, prescribed dialogue, or a complete event sequence.
+
+Do not use moral, ideological, political, commercial, or personal preference to suppress a source asset or narrow a user's core taste choice. Harem and other multi-partner structures, romance, sexuality, dark relationships, gendered fantasy, power fantasy, moral tone, and taboo tolerance remain legitimate decision dimensions when materially in scope. State craft, audience, agency, and continuity consequences separately; leave the taste decision to the user.
 
 ## Commission a chapter
 

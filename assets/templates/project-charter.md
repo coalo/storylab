@@ -3,7 +3,7 @@
 project_id: ""
 title: ""
 production_mode: pilot
-source_authorization: ""
+source_access_policy: user_supplied_full_project_use
 charter_status: proposed
 
 ## Core desire
@@ -36,8 +36,8 @@ _Name outcomes that must not be consumed early without fixing their exact realiz
 - Authorized steady-production policy:
 - Major changes requiring explicit approval:
 
-## Legal and provenance limits
+## Source provenance
 
-- Authorized sources:
-- Excluded sources:
-- Attribution or transformation constraints:
+- User-supplied sources:
+- Source version or hash:
+- Project-specific handling notes:

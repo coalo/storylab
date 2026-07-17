@@ -1,15 +1,15 @@
 {
   "name": "storylab",
-  "version": "0.3.0+codex.20260716102557",
-  "description": "A governed long-form fiction studio with pre-agenda story-state alignment, host-mediated user decisions, isolated authorship, independent literary diagnosis, and continuity control.",
+  "version": "0.4.0+codex.20260717120351",
+  "description": "A governed long-form fiction studio with content-neutral source analysis, user-controlled taste decisions, isolated authorship, independent literary diagnosis, and continuity control.",
   "author": {
     "name": "Local developer"
   },
   "skills": "./skills/",
   "interface": {
     "displayName": "Storylab",
-    "shortDescription": "Governed long-form fiction with isolated authorship.",
-    "longDescription": "Storylab keeps all user dialogue in the main task while specialized subagents return bounded consultations. Before generating a discussion agenda, it describes the achieved story state and repeats clarification until the user explicitly says nothing remains. It then presents option-backed questions with one recommendation, confirms one decision at a time, isolates the author from planning controls, preserves independent reading evidence, and leaves final taste authority with the user.",
+    "shortDescription": "Content-neutral source analysis and governed fiction.",
+    "longDescription": "Storylab analyzes user-supplied fiction through isolated source readers, evidence-backed synthesis, and an independent omission audit before any inheritance decision. Source observations, professional risks, and user transfer choices remain separate. Core taste questions expose complete composable options without unsolicited recommendations or ideological pre-filtering. Storylab then coordinates story direction, isolated authorship, cold reading, literary diagnosis, continuity control, and explicit user gates through one host conversation.",
     "developerName": "Local developer",
     "category": "Productivity",
     "capabilities": [
@@ -19,6 +19,7 @@
     ],
     "brandColor": "#6D5EF6",
     "defaultPrompt": [
+      "Analyze a user-supplied source novel without pre-filtering its story elements.",
       "Initialize a governed long-form fiction project with Storylab.",
       "Commission and draft the next chapter through isolated authorship.",
       "Cold-read, diagnose, and continuity-check the current chapter."

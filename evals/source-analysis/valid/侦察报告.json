@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "source_id": "source-fixture",
+  "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "structural_coverage": [
+    {
+      "unit_id": "V01",
+      "status": "sampled"
+    }
+  ],
+  "candidate_categories": [
+    "relationship_networks",
+    "romance_intimacy_and_multi_partner_dynamics"
+  ],
+  "representative_source_refs": [
+    {
+      "unit_id": "V01",
+      "locator": "chapter-003"
+    }
+  ],
+  "under_sampled_areas": [],
+  "transfer_decisions": []
+}

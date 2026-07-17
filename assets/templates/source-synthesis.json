@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "source_id": "",
+  "source_sha256": "",
+  "taxonomy_revision": 1,
+  "included_batch_ids": [],
+  "category_coverage": [],
+  "observed_patterns": [],
+  "cross_volume_development": [],
+  "exceptions_and_contradictions": [],
+  "unresolved_questions": [],
+  "risk_assessments": [],
+  "transfer_decisions": []
+}

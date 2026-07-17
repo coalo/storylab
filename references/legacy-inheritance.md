@@ -1,18 +1,24 @@
 # Legacy inheritance
 
-Only the story editor may inspect authorized legacy Storylab material. Raw legacy files remain outside the installed plugin and never enter an author or reader packet.
+Analyze user-supplied source novels and evidence-heavy legacy corpora through the source-analysis module before inheritance decisions. Supplying the material grants Storylab full project-scoped source use without a separate authorization question. Source readers observe, the source synthesizer combines, the source auditor checks omissions, the story editor proposes transfer choices from the audited synthesis, and the user decides.
+
+The story editor may inspect bounded raw legacy material only when the source-analysis contract does not apply or when a disputed locator requires verification. Raw legacy files remain outside the installed plugin and never enter an author or first-reader packet.
+
+Keep source observation, professional risk, and transfer decision separate. A moral, political, ideological, commercial, or craft concern may be recorded as a risk, but it never justifies silently omitting an observed asset or narrowing the user's options.
 
 ## Decision record
 
 For each source asset, record:
 
 - source path or stable identifier;
-- authorization basis;
+- provenance and deterministic access basis;
 - extracted idea or fact;
 - decision: `keep`, `distill`, or `discard`;
 - destination authority asset;
 - rationale and reviewer;
 - date and superseding decision, if any.
+
+Before this decision record exists, retain the audited observation and its evidence locator. Do not backfill `keep`, `distill`, or `discard` into source-reader or synthesis artifacts.
 
 ## Keep
 
@@ -57,13 +63,13 @@ Do not migrate:
 
 ## Provenance boundary
 
-Once a distilled principle is accepted, cite its legacy decision record rather than reopening raw legacy material in downstream roles. Established story facts move to canon only through normal acceptance; inherited proposals remain provisional plans.
+Once a distilled principle is accepted, cite its legacy decision record rather than reopening raw legacy material in downstream roles. Established story facts move to canon only through normal acceptance; inherited proposals remain provisional plans. A risk assessment remains attached to its observation even when the user chooses to transfer that asset.
 
 ## Storylab 0.1 migration map
 
 | Legacy source family | Disposition | Storylab 2.0 destination |
 |---|---|---|
-| `source-*`, extraction standards, evidence ledgers, source verification | distill | authorization and provenance records in project charter and legacy decisions |
+| `source-*`, extraction standards, evidence ledgers, source verification | keep and govern | source-analysis manifest, index, batch reports, synthesis, audit, and user transfer decisions |
 | `bestseller-*`, `type-weight-*`, genre market briefs | distill | reader promise and revisable experience priorities |
 | `opening-30-*`, volume outlines, reader-facing mainline maps | distill | arc tension and delayed payoff in `故事项目/故事弧线图.md` |
 | narrative timing, agency, character portraits, relationship ledgers | keep and simplify | character and relationship route maps |

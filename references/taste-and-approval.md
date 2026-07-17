@@ -14,6 +14,21 @@ Record only explicit user statements tied to a sample, chapter, passage, or name
 
 Do not infer approval from silence, task continuation, factual acceptance, or acceptance of a different chapter.
 
+## Content-neutral creative authority
+
+Classify decisions about the user's desired reading experience as `user_taste`, including premise fantasy, harem or other multi-partner structure, romance and sexuality, relationship darkness, gendered fantasy, power fantasy, moral tone, and taboo tolerance.
+
+For a `user_taste` agenda item:
+
+- present the complete material decision dimension; do not ask a specialist to reduce it to the fewest questions;
+- provide 2-7 options when useful, allow combinations, and always accept a free-form answer outside the list;
+- explain likely narrative, audience, agency, continuity, and production consequences;
+- set no recommended option, default, or preferred framing unless the user explicitly asks for one;
+- do not silently remove an option because of political, moral, ideological, market, or editorial preference;
+- keep professional risk labels separate from the user's choice.
+
+Deduplication may merge truly equivalent wording. It must not collapse distinct relationship configurations, degrees, participant structures, or narrative functions.
+
 ## Production modes
 
 - `pilot`: explicit approval for the charter, voice sample, and each pilot chapter.

@@ -19,7 +19,7 @@ Keep it short and use the user's language. It may be combined with the first sta
 
 Every new decision round begins with an alignment gate before concrete questions exist.
 
-Create new rounds with discussion schema `3.0`. Existing schema `2.0` agenda files remain valid for recovery and completion, but do not start a new round in the legacy format.
+Create new rounds with discussion schema `3.1`. Existing schema `2.0` and `3.0` agenda files remain valid for recovery and completion, but do not start a new round in an older format.
 
 1. Describe the story direction already reached or the current volume, chapter, or taste state in plain language. Include the active reader promise, scope, accepted constraints, provisional choices, affected downstream work, and basis artifacts.
 2. Ask only whether that description is accurate and whether the user still needs to clarify, add, or correct anything. Do not reveal question candidates, options, or recommendations yet.
@@ -32,7 +32,7 @@ On recovery, resume an unanswered clarification turn or the `clarifying` state b
 
 ## Build the agenda
 
-After alignment is explicitly cleared, regenerate candidate questions from all relevant consultations and the clarified summary. Remove questions already answered by approved project files or the clarification loop. Merge duplicates, split compound decisions, and order items by dependency and blocking effect.
+After alignment is explicitly cleared, regenerate candidate questions from all relevant consultations and the clarified summary. Remove questions already answered by approved project files or the clarification loop. Merge only truly equivalent duplicates, split compound decisions, and order items by dependency and blocking effect. Do not optimize for the fewest questions when doing so would erase a material taste dimension.
 
 Every item must include:
 
@@ -41,15 +41,30 @@ Every item must include:
 - why the decision matters;
 - downstream effect;
 - one direct question;
-- 2-3 mutually exclusive options with their tradeoffs;
-- one recommended option and recommendation rationale;
+- `decision_kind`: `professional` or `user_taste`;
+- `selection_mode`: `single`, `multi`, or `freeform`;
+- options with their tradeoffs or consequences;
 - blocking or non-blocking scope.
+
+For a `professional` item, provide 2-3 mutually exclusive options, one recommended option, and its rationale.
+
+For a `user_taste` item:
+
+- expose the complete material decision dimension;
+- provide 2-7 composable or free-form options when useful;
+- permit combinations and an answer outside the list;
+- explain consequences without a default, preferred framing, or recommendation unless the user explicitly asks for one;
+- keep `recommended_option_id`, `recommendation`, and `recommendation_reason` null;
+- state in `neutrality_note` that the choice belongs to the user;
+- never pre-delete an option because of moral, ideological, political, commercial, or editorial preference.
+
+Core relationship configuration, romance and sexuality, harem or other multi-partner structure, gendered fantasy, power fantasy, dark relationships, moral tone, and taboo tolerance are `user_taste` when they describe the experience the user wants. Professional roles may describe craft, agency, audience, continuity, and production consequences, but may not decide those preferences.
 
 Do not add questions merely because more detail might be interesting.
 
 ## Present before asking
 
-Set `questions_generated_at` only after alignment clearance. Show the complete numbered agenda, including every item's options and recommendation, before discussing an item. Include agenda revision and progress. Then ask only the first unresolved item.
+Set `questions_generated_at` only after alignment clearance. Show the complete numbered agenda, including every item's options and any allowed recommendation, before discussing an item. Explicitly label user-taste items as having no default recommendation. Include agenda revision and progress. Then ask only the first unresolved item.
 
 If the user reorders, removes, combines, or adds items, update the agenda, increment its revision, and show the complete revised list before resuming.
 
@@ -85,6 +100,8 @@ Load `故事项目/讨论议程.json` and validate it. Resume an unfinished alig
 - Concrete questions, options, or recommendations appear before explicit alignment clearance.
 - An unanswered clarification turn or “continue” is treated as clearance.
 - Multiple unresolved questions are asked in one message.
+- A user-taste item contains an unsolicited recommendation or default.
+- Distinct creative configurations are removed under deduplication, minimum-question optimization, political correctness, or an editorial risk label.
 - An item is marked confirmed without explicit evidence.
 - A new agenda item is introduced without redisplaying the list.
 - Component decisions are mistaken for final charter or taste approval.

@@ -38,6 +38,9 @@ run("discussion agenda accepts explicit alignment clearance and option contracts
 run("discussion agenda rejects questions before alignment clearance", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/invalid-questions-before-clearance.json")], 1);
 run("discussion agenda rejects false alignment clearance", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/invalid-false-alignment-clearance.json")], 1);
 run("discussion agenda rejects incomplete option contracts", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/invalid-option-contract.json")], 1);
+run("discussion agenda accepts a neutral composable user-taste decision", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/valid-user-taste-neutral.json")]);
+run("discussion agenda rejects an unsolicited recommendation on user taste", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/invalid-user-taste-recommendation.json")], 1);
+run("source analysis accepts complete audited extraction evidence", "validate-source-analysis.mjs", ["--root", path.join(root, "evals/source-analysis/valid")]);
 
 const authorSkill = fs.readFileSync(path.join(root, "skills/storylab-author/SKILL.md"), "utf8");
 const firstReaderSkill = fs.readFileSync(path.join(root, "skills/storylab-first-reader/SKILL.md"), "utf8");
@@ -52,7 +55,10 @@ const specialistSkills = [
   "storylab-author",
   "storylab-first-reader",
   "storylab-literary-editor",
-  "storylab-continuity-editor"
+  "storylab-continuity-editor",
+  "storylab-source-reader",
+  "storylab-source-synthesizer",
+  "storylab-source-auditor"
 ].map((name) => fs.readFileSync(path.join(root, `skills/${name}/SKILL.md`), "utf8"));
 results.push({
   name: "every specialist returns through the host",
@@ -98,11 +104,18 @@ results.push({
     && conversationProtocol.includes("2-3 mutually exclusive options")
     && conversationProtocol.indexOf("## Align the achieved story state before building the agenda") < conversationProtocol.indexOf("## Build the agenda")
 });
+results.push({
+  name: "host separates professional recommendations from user taste",
+  passed: hostSkill.includes("Classify each item as `professional` or `user_taste`")
+    && hostSkill.includes("set no default or recommendation")
+    && hostSkill.includes("Do not minimize away distinct relationship configurations")
+    && conversationProtocol.includes("never pre-delete an option because of moral, ideological, political, commercial, or editorial preference")
+});
 
 const discussionTemplate = JSON.parse(fs.readFileSync(path.join(root, "assets/templates/discussion-agenda.json"), "utf8"));
 results.push({
-  name: "new discussion rounds start with an empty schema 3 alignment gate",
-  passed: discussionTemplate.schema_version === "3.0"
+  name: "new discussion rounds start with an empty schema 3.1 alignment gate",
+  passed: discussionTemplate.schema_version === "3.1"
     && discussionTemplate.status === "alignment"
     && discussionTemplate.current_item_id === null
     && discussionTemplate.alignment_gate?.status === "awaiting_user"
@@ -117,9 +130,83 @@ results.push({
   name: "specialist consultation exposes decision candidates to the host",
   passed: consultationTemplate.needs_user_decision === true
     && Array.isArray(consultationTemplate.question_candidates)
-    && ["topic", "why", "downstream_effect", "question", "recommendation", "blocking_scope"]
+    && ["topic", "why", "downstream_effect", "question", "decision_kind", "selection_mode", "option_candidates", "recommendation", "blocking_scope"]
       .every((key) => Object.hasOwn(consultationTemplate.question_candidates[0], key))
 });
+
+const sourceContract = fs.readFileSync(path.join(root, "references/source-analysis-contract.md"), "utf8");
+const sourceReaderSkill = fs.readFileSync(path.join(root, "skills/storylab-source-reader/SKILL.md"), "utf8");
+const sourceAuditorSkill = fs.readFileSync(path.join(root, "skills/storylab-source-auditor/SKILL.md"), "utf8");
+const sourceManifestTemplate = JSON.parse(fs.readFileSync(path.join(root, "assets/templates/source-manifest.json"), "utf8"));
+const sourceStateTemplate = JSON.parse(fs.readFileSync(path.join(root, "assets/templates/source-analysis-state.json"), "utf8"));
+const extractionSpecTemplate = JSON.parse(fs.readFileSync(path.join(root, "assets/templates/source-extraction-spec.json"), "utf8"));
+results.push({
+  name: "user-supplied source access is automatic and never an authorization gate",
+  passed: sourceContract.includes("Do not ask whether Storylab is authorized")
+    && sourceManifestTemplate.access_basis === "user_supplied_full_project_use"
+    && !Object.hasOwn(sourceManifestTemplate, "authorization_ref")
+    && sourceStateTemplate.status === "uninitialized"
+    && sourceStateTemplate.pending_gate === null
+});
+results.push({
+  name: "source analysis has no mandatory moral risk checklist",
+  passed: Array.isArray(extractionSpecTemplate.risk_categories)
+    && extractionSpecTemplate.risk_categories.length === 0
+    && sourceContract.includes("Storylab has no mandatory moral, ideological, or political risk checklist")
+});
+results.push({
+  name: "Storylab adds no secondary legal or platform-safety content gate",
+  passed: !/platform safety|applicable law|legal or safety consequences|法律与安全|平台安全/iu.test(
+    [
+      sourceContract,
+      hostSkill,
+      conversationProtocol,
+      fs.readFileSync(path.join(root, "references/creative-governance.md"), "utf8"),
+      fs.readFileSync(path.join(root, "references/taste-and-approval.md"), "utf8")
+    ].join("\n")
+  )
+});
+results.push({
+  name: "source roles preserve multi-partner evidence separately from risk",
+  passed: sourceReaderSkill.includes("multi-partner or harem relationship engine")
+    && sourceReaderSkill.includes("Record the observed asset first")
+    && sourceAuditorSkill.includes("multi-partner dynamics collapsed into an objectification or exploitation warning")
+    && sourceContract.includes("A risk assessment never changes an observation from `present` to `absent`")
+});
+
+const sourceRegressionRoot = fs.mkdtempSync(path.join(os.tmpdir(), "storylab-source-regression-"));
+try {
+  const silentOmissionRoot = path.join(sourceRegressionRoot, "silent-omission");
+  fs.cpSync(path.join(root, "evals/source-analysis/valid"), silentOmissionRoot, { recursive: true });
+  const auditPath = path.join(silentOmissionRoot, "提取审计.json");
+  const invalidAudit = JSON.parse(fs.readFileSync(auditPath, "utf8"));
+  invalidAudit.silent_omission_findings = [{
+    finding_id: "F-001",
+    summary: "Multi-partner relationship evidence was replaced by an editorial risk label."
+  }];
+  fs.writeFileSync(auditPath, `${JSON.stringify(invalidAudit, null, 2)}\n`, "utf8");
+  run(
+    "source analysis rejects a falsely clear audit with silent editorial omission",
+    "validate-source-analysis.mjs",
+    ["--root", silentOmissionRoot],
+    1
+  );
+
+  const prematureDecisionRoot = path.join(sourceRegressionRoot, "premature-decision");
+  fs.cpSync(path.join(root, "evals/source-analysis/valid"), prematureDecisionRoot, { recursive: true });
+  const batchPath = path.join(prematureDecisionRoot, "批次", "批次-001", "批次报告.json");
+  const invalidBatch = JSON.parse(fs.readFileSync(batchPath, "utf8"));
+  invalidBatch.observations[1].decision = "discard";
+  fs.writeFileSync(batchPath, `${JSON.stringify(invalidBatch, null, 2)}\n`, "utf8");
+  run(
+    "source analysis rejects a transfer decision hidden in source observation",
+    "validate-source-analysis.mjs",
+    ["--root", prematureDecisionRoot],
+    1
+  );
+} finally {
+  fs.rmSync(sourceRegressionRoot, { recursive: true, force: true });
+}
 
 const routes = JSON.parse(fs.readFileSync(path.join(root, "evals/editorial-routing/cases.json"), "utf8"));
 const expectedByLevel = { prose: "author_revision", chapter: "chapter_recommission", story: "story_replan", ready: "literary_ready" };
@@ -175,6 +262,8 @@ results.push({
   passed: PROJECT_PATH_CONTRACT.rootDirectory === "故事项目"
     && PROJECT_PATH_CONTRACT.directories.chapters === "章节"
     && PROJECT_PATH_CONTRACT.directories.consultations === "专家咨询"
+    && PROJECT_PATH_CONTRACT.directories.sourceAnalysis === "源作解析"
+    && PROJECT_PATH_CONTRACT.directories.sourceBatches === "批次"
     && chapterFolderName("001") === "第001章"
     && ALL_TEMPLATE_ENTRIES.every((entry) => /^[\p{Script=Han}]/u.test(entry.runtime))
 });
@@ -182,11 +271,13 @@ results.push({
 const initializationProject = fs.mkdtempSync(path.join(os.tmpdir(), "storylab-init-eval-"));
 try {
   const firstInitialization = run(
-    "initializer creates Chinese project, discussion, chapter, and consultation paths",
+    "initializer creates Chinese project, discussion, source-analysis, chapter, and consultation paths",
     "initialize-story-project.mjs",
     [
       "--project-root", initializationProject,
       "--with-discussion",
+      "--with-source-analysis",
+      "--source-batch", "001",
       "--chapter", "001",
       "--chapter-stage", "commission",
       "--consultation", "001"
@@ -205,6 +296,14 @@ try {
     "生产状态.json",
     "讨论议程.json",
     "用户决策记录.md",
+    path.join("源作解析", "源作清单.json"),
+    path.join("源作解析", "源作结构索引.json"),
+    path.join("源作解析", "解析状态.json"),
+    path.join("源作解析", "侦察报告.json"),
+    path.join("源作解析", "提取方案.json"),
+    path.join("源作解析", "全书综合.json"),
+    path.join("源作解析", "提取审计.json"),
+    path.join("源作解析", "批次", "批次-001", "批次报告.json"),
     path.join("章节", "第001章", "章节任务书.md"),
     path.join("专家咨询", "咨询-001.json")
   ];
@@ -213,6 +312,11 @@ try {
     passed: firstInitialization.status === 0
       && expectedFiles.every((relative) => fs.existsSync(path.join(storyDirectory, relative)))
   });
+  run(
+    "fresh source-analysis assets validate without an authorization decision",
+    "validate-source-analysis.mjs",
+    ["--root", path.join(storyDirectory, "源作解析")]
+  );
 
   const charterPath = path.join(storyDirectory, "项目章程.md");
   fs.writeFileSync(charterPath, "用户内容不得覆盖\n", "utf8");

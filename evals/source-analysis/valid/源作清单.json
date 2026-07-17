@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "source_id": "source-fixture",
+  "title": "Synthetic Source Fixture",
+  "source_path": "/fixtures/source.txt",
+  "access_basis": "user_supplied_full_project_use",
+  "encoding": "utf8",
+  "size_bytes": 4096,
+  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "structure_index_ref": "故事项目/源作解析/源作结构索引.json",
+  "status": "registered"
+}

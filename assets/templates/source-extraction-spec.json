@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "source_id": "",
+  "revision": 1,
+  "status": "proposed",
+  "coverage_categories": [
+    "reader_promise_and_serial_rewards",
+    "protagonist_engine",
+    "supporting_character_agency",
+    "relationship_networks",
+    "romance_intimacy_and_multi_partner_dynamics",
+    "organization_power_and_resource_flows",
+    "event_causality",
+    "suspense_plant_and_payoff",
+    "world_rules_and_terminology",
+    "themes_voice_and_tone"
+  ],
+  "risk_categories": [],
+  "granularity": "",
+  "explicit_exclusions": [],
+  "batch_policy": {
+    "unit": "volume_or_section",
+    "maximum_units_per_batch": 1,
+    "checkpoint": "each_batch"
+  },
+  "user_confirmation": null
+}
