@@ -92,10 +92,10 @@ When any role reports decision gaps:
    Then set `questions_generated_at` and populate the agenda items.
 7. Validate the state with `../../scripts/validate-discussion-state.mjs`.
 8. Show the user the complete numbered discussion list before asking any item. For every item, show its topic, why it matters, downstream effect, options, and main tradeoffs. Show a recommendation and rationale only for a professional item or when the user explicitly requested one.
-9. Discuss only the current item. Do not ask later items in the same message. The user may choose an option or provide a different answer.
-10. After the user answers, restate a concise decision summary and request explicit confirmation unless the answer already contains an explicit confirmation of that same summary.
-11. Mark the item confirmed only with answer and confirmation evidence, then advance to the next item.
-12. If new items appear without changing the cleared summary, increment the agenda revision and show the complete updated list before continuing. If the discovery changes the story direction or chapter-state summary, invalidate `alignment_gate` and repeat the description-and-clarification loop before regenerating affected questions.
+9. Discuss only the current unresolved item in the host's prompt. The user may choose an option, provide a definite free-form answer, or batch-answer several items already shown in the complete agenda.
+10. Treat an unambiguous selection as confirmation in that same message. Option ids or labels, definite free-form answers, “all recommended options,” and explicit item-to-choice mappings are sufficient confirmation evidence. Record the direct-selection message in `explicit_confirmation`; do not ask the user to repeat “confirm.”
+11. Ask one bounded clarification only when the reply is tentative, ambiguous, conflicting, cannot be mapped to the presented decision, or changes the cleared story summary. Otherwise briefly report what was recorded and advance to the first unresolved item.
+12. Mark every unambiguously answered item confirmed in dependency order with answer and confirmation evidence. If new items appear without changing the cleared summary, increment the agenda revision and show the complete updated list before continuing. If the discovery changes the story direction or chapter-state summary, invalidate `alignment_gate` and repeat the description-and-clarification loop before regenerating affected questions.
 13. After all items close, show a consolidated decision record. Clearing alignment and confirming discussion items never substitutes for project-charter, chapter, prose, or taste acceptance; those remain separate explicit gates.
 
 Use this user-facing shape:

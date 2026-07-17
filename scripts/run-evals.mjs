@@ -29,9 +29,10 @@ run("production state accepts planned to commissioned", "validate-story-state.mj
 run("production state rejects skipped stages", "validate-story-state.mjs", [path.join(root, "evals/end-to-end/state-invalid-transition.json"), "--previous", path.join(root, "evals/end-to-end/state-valid.json")], 1);
 run("discussion agenda accepts one presented current item", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/valid-active.json")]);
 run("discussion agenda rejects parallel questions", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/invalid-two-current.json")], 1);
-run("discussion agenda rejects confirmation without evidence", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/invalid-unconfirmed.json")], 1);
+run("discussion agenda rejects a closed decision without evidence", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/invalid-unconfirmed.json")], 1);
 run("discussion agenda rejects asking before list presentation", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/invalid-unpresented.json")], 1);
 run("discussion agenda advances after explicit item confirmation", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/valid-next-item.json"), "--previous", path.join(root, "evals/conversation/valid-active.json")]);
+run("discussion agenda advances after a direct option selection", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/valid-direct-selection.json"), "--previous", path.join(root, "evals/conversation/valid-active.json")]);
 run("discussion agenda rejects skipping an earlier open item", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/invalid-skip-first.json")], 1);
 run("discussion alignment accepts the initial achieved-state summary", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/valid-alignment-awaiting.json")]);
 run("discussion agenda accepts explicit alignment clearance and option contracts", "validate-discussion-state.mjs", [path.join(root, "evals/conversation/valid-alignment-cleared-agenda.json")]);
@@ -83,10 +84,12 @@ results.push({
     && conversationProtocol.indexOf("## Open with the host declaration") < conversationProtocol.indexOf("## Build the agenda")
 });
 results.push({
-  name: "host presents an agenda and confirms one item at a time",
+  name: "host presents an agenda and accepts direct selections without a second confirmation",
   passed: hostSkill.includes("Show the user the complete numbered discussion list")
-    && hostSkill.includes("Discuss only the current item")
-    && hostSkill.includes("request explicit confirmation")
+    && hostSkill.includes("Treat an unambiguous selection as confirmation in that same message")
+    && hostSkill.includes("do not ask the user to repeat “confirm.”")
+    && conversationProtocol.includes("Resolve selected items without redundant confirmation")
+    && conversationProtocol.includes("When one message unambiguously answers several items")
     && hostSkill.includes("讨论议程.json")
 });
 results.push({

@@ -68,18 +68,17 @@ Set `questions_generated_at` only after alignment clearance. Show the complete n
 
 If the user reorders, removes, combines, or adds items, update the agenda, increment its revision, and show the complete revised list before resuming.
 
-## Confirm one item at a time
+## Resolve selected items without redundant confirmation
 
 1. Ask the current item's single direct question.
-2. Let the user explore, object, or revise without opening the next item.
-3. Summarize the resulting decision in plain language.
-4. Ask for explicit confirmation of that summary.
-5. If the user already wrote an explicit confirmation tied to the same decision, record it without another redundant prompt.
-6. Store the answer, confirmation summary, and confirmation evidence.
-7. Mark the item `confirmed`, `deferred`, or `removed`.
-8. Show updated progress and ask the next unresolved item.
+2. Let the user explore, object, revise, or answer several already-presented agenda items in one message.
+3. Treat an unambiguous choice as confirmation in the same turn. This includes naming an option id or label, giving a definite free-form answer, saying “all recommended options,” or mapping several item ids to choices. Do not ask the user to repeat “confirm.”
+4. Store the answer, a concise confirmation summary, and the direct-selection message as `explicit_confirmation` evidence. Briefly report the recorded result and advance to the first unresolved item.
+5. When one message unambiguously answers several items, close those items in dependency order and preserve the same message as evidence for each covered decision.
+6. Ask a follow-up only when the answer is tentative, ambiguous, internally conflicting, does not map to the presented options, or introduces a change that makes the cleared story summary invalid. In that case, restate only the unresolved interpretation and ask one bounded clarification question.
+7. Mark each resolved item `confirmed`, `deferred`, or `removed`, then show updated progress and continue.
 
-Do not interpret “continue,” silence, acceptance of another item, or general enthusiasm as confirmation.
+Do not interpret “continue,” silence, acceptance of an unrelated artifact, or general enthusiasm as a selection. A direct answer is confirmation; an absent answer is not.
 
 ## Handle new discoveries
 
@@ -102,6 +101,7 @@ Load `故事项目/讨论议程.json` and validate it. Resume an unfinished alig
 - Multiple unresolved questions are asked in one message.
 - A user-taste item contains an unsolicited recommendation or default.
 - Distinct creative configurations are removed under deduplication, minimum-question optimization, political correctness, or an editorial risk label.
-- An item is marked confirmed without explicit evidence.
+- An item is marked confirmed without direct-selection or explicit-confirmation evidence.
+- The host asks the user to confirm an option that the user already selected unambiguously.
 - A new agenda item is introduced without redisplaying the list.
 - Component decisions are mistaken for final charter or taste approval.
